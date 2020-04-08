@@ -1,2 +1,2 @@
 # FEUP-CGRA-PROJ
-FEUP - Base de Dados -> Projeto
+FEUP - Computação Gráfica -> Projeto
