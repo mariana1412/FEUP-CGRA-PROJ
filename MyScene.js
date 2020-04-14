@@ -47,7 +47,6 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = true;
-        this.displayTextures = false;
         this.currentObject = 0;
         this.currentTexture = -1;
     
@@ -67,6 +66,7 @@ class MyScene extends CGFscene {
         ];
 
         this.textureList= {
+            'None': -1,
             'Earth': 0,
             'CubeMap': 1,
             //'Nova Imagem': 2
@@ -97,11 +97,13 @@ class MyScene extends CGFscene {
 
     // called when a new texture is selected
 	selectedTexture() {
-        if(this.currentObject!=2)
+
+    if(this.currentObject!=2)
         this.material.setTexture(this.textures[this.currentTexture]);
     else{
         this.objects[this.currentObject].updateTexture();
     }   
+
     }
     
     updateSlices(){
@@ -137,7 +139,7 @@ class MyScene extends CGFscene {
 
         // ---- BEGIN Primitive drawing section
         
-        if(this.displayTextures)
+        if(this.currentTexture != -1)
             this.material.apply();
 
         
