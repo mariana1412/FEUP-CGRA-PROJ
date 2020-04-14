@@ -23,12 +23,52 @@ class MyScene extends CGFscene {
         
         this.enableTextures(true);
 
+        this.numberSlices = 16;
+        this.numberStacks = 8;
+        
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
+        
 
+        this.objects=[
+            new MySphere(this, this.numberSlices, this.numberStacks),
+            new MyCylinder(this, this.numberSlices)
+        ];
+
+        // Object interface variables
+		this.objectList = {
+			'Sphere': 0,
+			'Cylinder': 1
+        };
+        
+         
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.displayObjects = true;
+        this.displayTextures = false;
+        this.currentObject = 0;
+        this.currentTexture = -1;
+    
+        //Material
+        this.material=new CGFappearance(this);
+        this.material.setAmbient(0.1,0.1,0.1,1);
+        this.material.setDiffuse(0.9,0.9,0.9,1);
+        this.material.setDiffuse(0.2,0.2,0.2,1);
+        this.material.setShininess(10);
+        this.material.loadTexture('images/earth.jpg');
+        this.material.setTextureWrap('REPEAT','REPEAT');
+    
+        this.textures=[
+            new CGFtexture(this, 'images/earth.jpg'),
+            new CGFtexture(this, 'images/cubemap.png')
+        ];
+
+        this.textureList= {
+            'Earth': 0,
+            'CubeMap': 1
+        };
+        
+    
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -45,6 +85,26 @@ class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setShininess(10.0);
     }
+
+    // called when a new object is selected
+	selectedObject() {
+		this.objects[this.currentObject];
+    }
+
+    // called when a new texture is selected
+	selectedTexture() {
+		this.material.setTexture(this.textures[this.currentTexture]);
+    }
+    
+    updateSlices(){
+        this.objects[this.currentObject].updateSlices(this.numberSlices);
+    } 
+
+    updateStacks(){
+        this.objects[this.currentObject].updateStacks(this.numberStacks);
+    }
+
+
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         //To be done...
@@ -68,9 +128,13 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
+        
+        if(this.displayTextures)
+            this.material.apply();
 
-        //This sphere does not have defined texture coordinates
-        this.incompleteSphere.display();
+        
+        if(this.displayObjects)
+            this.objects[this.currentObject].display();
 
         // ---- END Primitive drawing section
     }

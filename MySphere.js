@@ -29,6 +29,13 @@ class MySphere extends CGFobject {
     var phiInc = Math.PI / this.latDivs;
     var thetaInc = (2 * Math.PI) / this.longDivs;
     var latVertices = this.longDivs + 1;
+    
+    var textureLong = 0;
+    var textureLat = 0;
+    var genericTextureLong = 1/this.longDivs;
+    var genericTextureLat = 1/this.latDivs; 
+
+
 
     // build an all-around stack at a time, starting on "north pole" and proceeding "south"
     for (let latitude = 0; latitude <= this.latDivs; latitude++) {
@@ -37,6 +44,8 @@ class MySphere extends CGFobject {
 
       // in each stack, build all the slices around, starting on longitude 0
       theta = 0;
+      textureLong = 0;
+      
       for (let longitude = 0; longitude <= this.longDivs; longitude++) {
         //--- Vertices coordinates
         var x = Math.cos(theta) * sinPhi;
@@ -60,20 +69,39 @@ class MySphere extends CGFobject {
         // at each vertex, the direction of the normal is equal to 
         // the vector from the center of the sphere to the vertex.
         // in a sphere of radius equal to one, the vector length is one.
-        // therefore, the value of the normal is equal to the position vectro
+        // therefore, the value of the normal is equal to the position vector
         this.normals.push(x, y, z);
-        theta += thetaInc;
+        
+        this.texCoords.push(textureLong, textureLat);
 
-        //--- Texture Coordinates
-        // To be done... 
-        // May need some additional code also in the beginning of the function.
+
+        theta += thetaInc;
+        textureLong += genericTextureLong;
         
       }
       phi += phiInc;
+      textureLat += genericTextureLat; 
     }
 
 
     this.primitiveType = this.scene.gl.TRIANGLES;
     this.initGLBuffers();
+  }
+
+  updateSlices(complexity){  
+
+    this.longDivs = complexity;
+
+    // reinitialize buffersx
+    this.initBuffers();
+    this.initNormalVizBuffers();
+  }
+
+  updateStacks(complexity){  
+    this.latDivs = complexity * 2;
+
+    // reinitialize buffers
+    this.initBuffers();
+    this.initNormalVizBuffers();
   }
 }
