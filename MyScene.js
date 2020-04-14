@@ -32,13 +32,15 @@ class MyScene extends CGFscene {
 
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
-            new MyCylinder(this, this.numberSlices)
+            new MyCylinder(this, this.numberSlices),
+            new MyCubeMap(this)
         ];
 
         // Object interface variables
 		this.objectList = {
 			'Sphere': 0,
-			'Cylinder': 1
+            'Cylinder': 1,
+            'Cube': 2
         };
         
          
@@ -60,12 +62,14 @@ class MyScene extends CGFscene {
     
         this.textures=[
             new CGFtexture(this, 'images/earth.jpg'),
-            new CGFtexture(this, 'images/cubemap.png')
+            new CGFtexture(this, 'images/cubemap.png'),
+            //new CGFtexture(this, 'nova imagem no total')
         ];
 
         this.textureList= {
             'Earth': 0,
-            'CubeMap': 1
+            'CubeMap': 1,
+            //'Nova Imagem': 2
         };
         
     
@@ -93,7 +97,11 @@ class MyScene extends CGFscene {
 
     // called when a new texture is selected
 	selectedTexture() {
-		this.material.setTexture(this.textures[this.currentTexture]);
+        if(this.currentObject!=2)
+        this.material.setTexture(this.textures[this.currentTexture]);
+    else{
+        this.objects[this.currentObject].updateTexture();
+    }   
     }
     
     updateSlices(){
