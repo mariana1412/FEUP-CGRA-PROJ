@@ -33,14 +33,16 @@ class MyScene extends CGFscene {
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
             new MyCylinder(this, this.numberSlices),
-            new MyCubeMap(this)
+            new MyCubeMap(this),
+            new MyVehicle(this, this.numberSlices, this.numberStacks)
         ];
 
         // Object interface variables
 		this.objectList = {
 			'Sphere': 0,
             'Cylinder': 1,
-            'Cube': 2
+            'Cube': 2,
+            'Vehicle': 3
         };
         
          
