@@ -126,18 +126,13 @@ class MyCubeMap extends CGFobject {
             this.bot.loadTexture('images/split_cubemap/bottom.png');
         }
         else if(this.scene.currentTexture==2){
-            //nao sei como dividir a imagem :)
-           /* this.left.loadTexture('');
-            this.right.loadTexture('');
-            this.front.loadTexture('');
-            this.back.loadTexture('');
-            this.top.loadTexture('');
-            this.bot.loadTexture(''); */  
+            this.left.loadTexture('images/split_cloud/left.png');
+            this.right.loadTexture('images/split_cloud/right.png');
+            this.front.loadTexture('images/split_cloud/back.png');
+            this.back.loadTexture('images/split_cloud/front.png');
+            this.top.loadTexture('images/split_cloud/top.png');
+            this.bot.loadTexture('images/split_cloud/bottom.png');   
         }
-    /*Falta escolher a nova textura e dividi-la em faces 
-    faces interiores?
-    o scalling faz a imagem desaparecer-ver isto
-    */ 
     }
 }
 
