@@ -97,21 +97,22 @@ class MyScene extends CGFscene {
 
     // called when a new texture is selected
 	selectedTexture() {
-
-    if(this.currentObject!=2)
-        this.material.setTexture(this.textures[this.currentTexture]);
-    else{
-        this.objects[this.currentObject].updateTexture();
-    }   
+        if(this.currentObject != 2)
+            this.material.setTexture(this.textures[this.currentTexture]);
+        else{
+            this.objects[this.currentObject].updateTexture();
+        }   
 
     }
     
     updateSlices(){
-        this.objects[this.currentObject].updateSlices(this.numberSlices);
+        if(this.currentObject == 0 || this.currentObject == 1)
+            this.objects[this.currentObject].updateSlices(this.numberSlices);
     } 
 
     updateStacks(){
-        this.objects[this.currentObject].updateStacks(this.numberStacks);
+        if(this.currentObject == 0)
+            this.objects[this.currentObject].updateStacks(this.numberStacks);
     }
 
 
