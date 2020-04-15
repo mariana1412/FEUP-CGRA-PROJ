@@ -139,7 +139,7 @@ class MyCubeMap extends CGFobject {
             this.front.loadTexture('images/split_cloud/back.png');
             this.back.loadTexture('images/split_cloud/front.png');
             this.top.loadTexture('images/split_cloud/top.png');
-            this.bot.loadTexture('images/split_cloud/bottom.png');   
+            this.bot.loadTexture('images/split_cloud/bottom2.png');   
         }
     }
 }

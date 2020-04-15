@@ -62,14 +62,14 @@ class MyScene extends CGFscene {
         this.textures=[
             new CGFtexture(this, 'images/earth.jpg'),
             new CGFtexture(this, 'images/cubemap.png'),
-            //new CGFtexture(this, 'nova imagem no total')
+            new CGFtexture(this, 'images/cloud.png')
         ];
 
         this.textureList= {
             'None': -1,
             'Earth': 0,
             'CubeMap': 1,
-            //'Nova Imagem': 2
+            'Cloud': 2
         };
         
     
