@@ -11,6 +11,7 @@ class MyCubeMap extends CGFobject {
     }
     initTextures(scene){
         // com   componente   especular   e   difusa   nulas,   e   componente   ambiente   forte
+
         //Left Texture
         this.left = new CGFappearance(this.scene);
         this.left.setAmbient(0.9, 0.9, 0.9, 1);
@@ -19,6 +20,7 @@ class MyCubeMap extends CGFobject {
         this.left.setShininess(10.0);
         this.left.loadTexture('images/split_cubemap/left.png');
         this.left.setTextureWrap('REPEAT', 'REPEAT');
+
         //Right Texture
         this.right = new CGFappearance(this.scene);
         this.right.setAmbient(0.9, 0.9, 0.9, 1);
@@ -27,6 +29,7 @@ class MyCubeMap extends CGFobject {
         this.right.setShininess(10.0);
         this.right.loadTexture('images/split_cubemap/right.png');
         this.right.setTextureWrap('REPEAT', 'REPEAT');
+
         //Back Texture
         this.back = new CGFappearance(this.scene);
         this.back.setAmbient(0.9, 0.9, 0.9, 1);
@@ -35,6 +38,7 @@ class MyCubeMap extends CGFobject {
         this.back.setShininess(10.0);
         this.back.loadTexture('images/split_cubemap/back.png');
         this.back.setTextureWrap('REPEAT', 'REPEAT');
+
         //Front Texture
         this.front = new CGFappearance(this.scene);
         this.front.setAmbient(0.9, 0.9, 0.9, 1);
@@ -43,11 +47,12 @@ class MyCubeMap extends CGFobject {
         this.front.setShininess(10.0);
         this.front.loadTexture('images/split_cubemap/front.png');
         this.front.setTextureWrap('REPEAT', 'REPEAT');
+
         //Top Texture
         this.top = new CGFappearance(this.scene);
         this.top.setAmbient(0.9, 0.9, 0.9, 1);
-        this.top.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.top.setSpecular(0.1, 0.1, 0.1, 1);
+        this.top.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.top.setSpecular(0.0, 0.0, 0.0, 1);
         this.top.setShininess(10.0);
         this.top.loadTexture('images/split_cubemap/top.png');
         this.top.setTextureWrap('REPEAT', 'REPEAT');
@@ -55,17 +60,18 @@ class MyCubeMap extends CGFobject {
         //Bottom Texture
         this.bottom = new CGFappearance(this.scene);
         this.bottom.setAmbient(0.9, 0.9, 0.9, 1);
-        this.bottom.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.bottom.setSpecular(0.1, 0.1, 0.1, 1);
+        this.bottom.setDiffuse(0.0, 0.0, 0.0, 1);
+        this.bottom.setSpecular(0.0, 0.0, 0.0, 1);
         this.bottom.setShininess(10.0);
         this.bottom.loadTexture('images/split_cubemap/bottom.png');
         this.bottom.setTextureWrap('REPEAT', 'REPEAT');
 
     }
+
 	display() {
         //scalling
         this.scene.pushMatrix();
-        //this.scene.scale(50,50,50);
+        this.scene.scale(50, 50, 50);
 
         // Right
         this.right.apply();	
@@ -114,8 +120,10 @@ class MyCubeMap extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
-        this.scene.popMatrix();
+    
     }
+
+    
     updateTexture(){
         if(this.scene.currentTexture==1){
             this.left.loadTexture('images/split_cubemap/left.png');
@@ -123,7 +131,7 @@ class MyCubeMap extends CGFobject {
             this.back.loadTexture('images/split_cubemap/back.png');
             this.front.loadTexture('images/split_cubemap/front.png');
             this.top.loadTexture('images/split_cubemap/top.png');
-            this.bot.loadTexture('images/split_cubemap/bottom.png');
+            this.bottom.loadTexture('images/split_cubemap/bottom.png');
         }
         else if(this.scene.currentTexture==2){
             this.left.loadTexture('images/split_cloud/left.png');
