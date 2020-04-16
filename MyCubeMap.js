@@ -120,7 +120,7 @@ class MyCubeMap extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
-    
+        this.scene.popMatrix();
     }
 
     

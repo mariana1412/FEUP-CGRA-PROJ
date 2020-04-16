@@ -76,7 +76,7 @@ class MyVehicle extends CGFobject {
     updateBuffers(complexity){
         this.slices = 3 + Math.round(9 * complexity); //complexity varies 0-1, so slices varies 3-12
 
-        // reinitialize buffers
+        //reinitialize buffers
         this.initBuffers();
         this.initNormalVizBuffers();
     }
@@ -99,6 +99,7 @@ class MyVehicle extends CGFobject {
 
     display(){
         this.scene.pushMatrix();
+
         //orientar a posiçao do veiculo
         this.scene.translate(this.x, this.y, this.z);
         this.scene.rotate(this.angY*Math.PI/180.0,0,1,0);
@@ -106,9 +107,8 @@ class MyVehicle extends CGFobject {
         this.scene.translate(0,0,-0.5);//para o eixo dos y estar a meio
         this.scene.rotate(Math.PI/2.0,1,0,0);//rodar para o eixo dos z
         super.display();//tipo override o display de scene
-        
-        this.scene.popMatrix(); 
-        /*Ainda nao esta a parecer o da imagem*/ 
+
+        this.scene.popMatrix();  
 
     }
 }

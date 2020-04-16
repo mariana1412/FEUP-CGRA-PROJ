@@ -48,7 +48,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = false;
-        this.displayVehicle=false;
+        this.displayVehicle = false;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
@@ -151,12 +151,11 @@ class MyScene extends CGFscene {
 
     // called when a new texture is selected
 	selectedTexture() {
-        if(this.currentObject != 2)
-            this.material.setTexture(this.textures[this.currentTexture]);
-        else{
+        if(this.currentObject == 2)
             this.objects[this.currentObject].updateTexture();
-        }   
-
+        
+        else
+            this.material.setTexture(this.textures[this.currentTexture]);
     }
     
     updateSlices(){
@@ -168,8 +167,6 @@ class MyScene extends CGFscene {
         if(this.currentObject == 0)
             this.objects[this.currentObject].updateStacks(this.numberStacks);
     }
-
-
 
 
 
@@ -191,19 +188,25 @@ class MyScene extends CGFscene {
         this.setDefaultAppearance();
 
         // ---- BEGIN Primitive drawing section
-        
+        this.pushMatrix();
+
+
         if(this.currentTexture != -1)
             this.material.apply();
 
         
         if(this.displayObjects)
             this.objects[this.currentObject].display();
+
+            
         if(this.displayVehicle){
+            this.pushMatrix();
             this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
             this.vehicle.display();
+            this.popMatrix();
         }
 
-
+        this.popMatrix();
 
         // ---- END Primitive drawing section
     }
