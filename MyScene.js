@@ -57,29 +57,30 @@ class MyScene extends CGFscene {
     
         //Material
         this.material=new CGFappearance(this);
-        this.material.setAmbient(0.1,0.1,0.1,1);
+        this.material.setAmbient(0.7,0.7,0.7,1);
         this.material.setDiffuse(0.9,0.9,0.9,1);
         this.material.setDiffuse(0.2,0.2,0.2,1);
-        this.material.setShininess(10);
+        this.material.setShininess(10.0);
         this.material.loadTexture('images/earth.jpg');
         this.material.setTextureWrap('REPEAT','REPEAT');
     
         this.textures=[
             new CGFtexture(this, 'images/earth.jpg'),
             new CGFtexture(this, 'images/cubemap.png'),
-            new CGFtexture(this, 'images/cloud.png')
+            new CGFtexture(this, 'images/mountain.png')
         ];
 
         this.textureList= {
             'None': -1,
             'Earth': 0,
             'CubeMap': 1,
-            'Cloud': 2
+            'Mountain': 2
         };
         
     
     }
     initLights() {
+        this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
@@ -96,20 +97,22 @@ class MyScene extends CGFscene {
     }
 
 
+    
 
     checkKeys(){
+        this.vehicle.update();
         var text="Keys pressed: ";
         var keysPressed=false;
 
         //check for key codes
         if(this.gui.isKeyPressed("KeyW")){
             text +="W";
-            this.vehicle.accelerate(0.5*this.speedFactor);
+            this.vehicle.accelerate(0.2*this.speedFactor);
             keysPressed = true;
         }
         if(this.gui.isKeyPressed("KeyS")){
             text +="S";
-            this.vehicle.accelerate(-0.5*this.speedFactor);
+            this.vehicle.accelerate(-0.2*this.speedFactor);
             keysPressed = true;
         }
         if(this.gui.isKeyPressed("KeyA")){

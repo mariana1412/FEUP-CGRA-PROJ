@@ -41,8 +41,8 @@ class MyCylinder extends CGFobject {
 
         this.normals.push(x, 0, z);
         this.normals.push(x, 0, z);
-        this.texCoords.push(texture, 0);
         this.texCoords.push(texture, 1);
+        this.texCoords.push(texture, 0);
 
         texture += genericTexture;
         angle += genericAngle;
