@@ -20,20 +20,22 @@ class MyStabilizer extends CGFobject {
 
     display(){
         this.scene.pushMatrix();
-        this.scene.scale(1/3, 1/3, 1/3);
-        
+          
+        //this.scene.rotate(this.angle,1,0,0);
+        //this.scene.translate(0,0,-0.4);
+
         //quad
         this.scene.pushMatrix();
-        this.scene.rotate(Math.PI/2.0, 0, 1, 0);
+        this.scene.rotate(Math.PI/2.0, 1, 0, 0);
+        this.scene.scale(0.2,0.2,0.2);
         this.quad.display();
         this.scene.popMatrix();
 
-        //Triangle
+         //Triangle
         this.scene.pushMatrix();
-        this.scene.translate(0, 0, 0.5);
-        this.scene.scale(1, 1/Math.sqrt(8), 1/Math.sqrt(8));
-        this.scene.rotate(Math.PI/2, 0, 1, 0);
-        this.scene.rotate(-Math.PI/4, 0, 0, 1);
+        this.scene.translate(0,0,0.2);
+        this.scene.scale(0.1,0.1,0.1);
+        this.scene.rotate(Math.PI/2.0, 1, 0, 0);
         this.triangle.display();
         this.scene.popMatrix();
 

@@ -17,7 +17,7 @@ class MyHelix extends CGFobject {
     
     display(){
         this.scene.pushMatrix();
-        this.scene.scale(0.1, 0.1, 0.02);
+        this.scene.scale(0.1, 0.1, 0.1);
         this.sphere.display();
         this.scene.popMatrix();
 

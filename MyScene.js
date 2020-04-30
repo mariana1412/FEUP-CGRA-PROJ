@@ -48,7 +48,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = false;
-        this.displayVehicle = false;
+        this.displayVehicle = true;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
