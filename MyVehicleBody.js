@@ -20,6 +20,9 @@ class MyVehicleBody extends CGFobject {
     setHelixAng(angle){
         this.helixAng = angle * Math.PI /180.0;
     }
+    setStabilizerDir(angle){
+        this.stabilizerDir = angle * Math.PI /180.0;
+    }
 
 	display() {
         //this.scene.setAmbient(0.5, 0.5, 0.5, 1.0);
@@ -69,7 +72,7 @@ class MyVehicleBody extends CGFobject {
         //top
         this.scene.pushMatrix();
         this.scene.translate(0, 0.32, -1);
-        //this.scene.rotate(this.stabilizerDir, 0,1,0);
+        this.scene.rotate(this.stabilizerDir, 0,1,0);
         this.scene.rotate(Math.PI/2.0,0,0,1);
         this.stabilizer.display();
         this.scene.popMatrix();
@@ -77,7 +80,7 @@ class MyVehicleBody extends CGFobject {
         //bottom
         this.scene.pushMatrix();
         this.scene.translate(0,-0.32,-1);
-        //this.scene.rotate(this.stabilizerDir,0,1,0);
+        this.scene.rotate(this.stabilizerDir,0,1,0);
         this.scene.rotate(3*Math.PI/2.0,0,0,1);
         this.stabilizer.display();
         this.scene.popMatrix();

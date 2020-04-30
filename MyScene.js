@@ -99,7 +99,7 @@ class MyScene extends CGFscene {
     }
 
 
-    checkKeys(){
+    checkKeys(t){
         this.vehicle.update();
         var text="Keys pressed: ";
         var keysPressed=false;
@@ -132,15 +132,16 @@ class MyScene extends CGFscene {
         }
         if(keysPressed){
             console.log(text);
-            this.vehicle.update();
+            this.vehicle.update(t);//verificar se é mesmo necessario
         }
        
     }
     
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        //To be done...´
-        this.checkKeys();
+        //To be done...
+        this.vehicle.update(t);
+        this.checkKeys(t);
     }
 
     updateComplexity(){

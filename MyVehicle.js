@@ -12,15 +12,14 @@ class MyVehicle extends CGFobject {
         this.x = 0;
         this.y = 0;
         this.z = 0;
-
-        
+       
     }
     
     update(t){
         this.x += this.speed*Math.sin(this.angY*Math.PI/180.0);
         this.z += this.speed*Math.cos(this.angY*Math.PI/180.0); 
-
-        //this.vehiclebody.setHelixAng(this.speed*t);
+    
+        this.vehiclebody.setHelixAng(this.speed*t);
     }
     
     updateBuffers(complexity){
@@ -33,6 +32,8 @@ class MyVehicle extends CGFobject {
 
     turn(val){
         this.angY += val;
+        this.vehiclebody.setStabilizerDir(-val*4);
+        this.vehiclebody.setStabilizerDir(-val*4);
     }
 
     accelerate(val){
@@ -62,7 +63,7 @@ class MyVehicle extends CGFobject {
         //this.scene.rotate(Math.PI/2.0,1,0,0);//rodar para o eixo dos z
         //super.display();//tipo override o display de scene
 
-        
+        this.scene.scale(3,3,3);
         this.vehiclebody.display();
         this.scene.popMatrix();  
 
