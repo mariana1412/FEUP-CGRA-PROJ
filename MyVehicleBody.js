@@ -15,6 +15,8 @@ class MyVehicleBody extends CGFobject {
 
         this.stabilizerDir = 0;
         this.helixAng = 0;  
+
+        this.initTextures();
     }   
    
     setHelixAng(angle){
@@ -24,20 +26,57 @@ class MyVehicleBody extends CGFobject {
         this.stabilizerDir = angle * Math.PI /180.0;
     }
 
+    initTextures(){
+        //Body
+        this.blimpBody = new CGFappearance(this.scene);
+        this.blimpBody.setAmbient(0.7,0.7,0.7,1);
+        this.blimpBody.setDiffuse(0.9,0.9,0.9,1);
+        this.blimpBody.setDiffuse(0.2,0.2,0.2,1);
+        this.blimpBody.setShininess(10.0);
+        this.blimpBody.loadTexture('images/vehicleBody.png');
+        this.blimpBody.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.redTexture = new CGFappearance(this.scene);
+        this.redTexture.setAmbient(0.7,0.7,0.7,1);
+        this.redTexture.setDiffuse(0.9,0.9,0.9,1);
+        this.redTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.redTexture.setShininess(10.0);
+        this.redTexture.loadTexture('images/redTexture.png');
+        this.redTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.blueTexture = new CGFappearance(this.scene);
+        this.blueTexture.setAmbient(0.7,0.7,0.7,1);
+        this.blueTexture.setDiffuse(0.9,0.9,0.9,1);
+        this.blueTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.blueTexture.setShininess(10.0);
+        this.blueTexture.loadTexture('images/blueTexture.png');
+        this.blueTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.whiteTexture = new CGFappearance(this.scene);
+        this.whiteTexture.setAmbient(0.7,0.7,0.7,1);
+        this.whiteTexture.setDiffuse(0.9,0.9,0.9,1);
+        this.whiteTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.whiteTexture.setShininess(10.0);
+        this.whiteTexture.loadTexture('images/whiteTexture.png');
+        this.whiteTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+    }
+
 	display() {
         //this.scene.setAmbient(0.5, 0.5, 0.5, 1.0);
         
         this.scene.pushMatrix();
-        //this.scene.translate(0, 10, 0);
-        //this.scene.rotate(Math.PI/2.0,0,1,0);
         
         //sphere- balao
+        
         this.scene.pushMatrix();
+        this.blimpBody.apply();
         this.scene.scale(0.5,0.5, 1);
         this.sphere.display();
         this.scene.popMatrix();
 
         //Gondola
+        this.redTexture.apply();
         this.gondola.display();
      
 
@@ -54,6 +93,7 @@ class MyVehicleBody extends CGFobject {
         this.scene.popMatrix();
         
         this.scene.pushMatrix();
+        this.whiteTexture.apply();
         this.scene.translate(-0.1, -0.50, -0.45);
         this.scene.scale(0.09, 0.09, 0.09);
         this.scene.rotate(this.helixAng, 0, 0, 1);
@@ -61,6 +101,7 @@ class MyVehicleBody extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.pushMatrix();
+        this.whiteTexture.apply();
         this.scene.translate(0.1, -0.50, -0.45);
         this.scene.scale(0.09, 0.09, 0.09);
         this.scene.rotate(this.helixAng, 0, 0, 1);
@@ -71,6 +112,7 @@ class MyVehicleBody extends CGFobject {
         //Stabilizers
         //top
         this.scene.pushMatrix();
+        this.blueTexture.apply();
         this.scene.translate(0, 0.32, -1);
         this.scene.rotate(this.stabilizerDir, 0,1,0);
         this.scene.rotate(Math.PI/2.0,0,0,1);
@@ -79,6 +121,7 @@ class MyVehicleBody extends CGFobject {
 
         //bottom
         this.scene.pushMatrix();
+        this.blueTexture.apply();
         this.scene.translate(0,-0.32,-1);
         this.scene.rotate(this.stabilizerDir,0,1,0);
         this.scene.rotate(3*Math.PI/2.0,0,0,1);
@@ -87,12 +130,14 @@ class MyVehicleBody extends CGFobject {
 
         //left
         this.scene.pushMatrix();
+        this.whiteTexture.apply();
         this.scene.translate(0.35,0,-1);
         this.stabilizer.display();
         this.scene.popMatrix();
 
         //right
         this.scene.pushMatrix();
+        this.whiteTexture.apply();
         this.scene.translate(-0.35,0,-1);
         this.scene.rotate(Math.PI,0,0,1);
         this.stabilizer.display();
