@@ -25,7 +25,7 @@ class MyVehicle extends CGFobject {
         this.deltaAngle = 0;
         this.angularSpeed =360/5.0; // formula: 360/animationTime 
     }
-    
+
     startAutoPilot(){
         
         this.automatic = true;

@@ -29,6 +29,7 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.vehicle = new MyVehicle(this, this.numberSlices, this.numberStacks);
+        this.terrain = new MyTerrain(this);
 
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
@@ -49,6 +50,7 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayObjects = false;
         this.displayVehicle = true;
+        this.displayTerrain = false;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
@@ -67,7 +69,8 @@ class MyScene extends CGFscene {
         this.textures=[
             new CGFtexture(this, 'images/earth.jpg'),
             new CGFtexture(this, 'images/cubemap.png'),
-            new CGFtexture(this, 'images/mountain.png')
+            new CGFtexture(this, 'images/mountain.png'),
+            new CGFtexture(this, 'images/heightmap.jpg')
         ];
 
         this.textureList= {
@@ -211,6 +214,9 @@ class MyScene extends CGFscene {
         
         if(this.displayObjects)
             this.objects[this.currentObject].display();
+        
+        if(this.displayTerrain)
+            this.terrain.display();
 
             
         if(this.displayVehicle){
