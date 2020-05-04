@@ -221,6 +221,7 @@ class MyScene extends CGFscene {
             
         if(this.displayVehicle){
             this.pushMatrix();
+            //this.translate(0,10,0);
             this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
             this.vehicle.display();
             this.popMatrix();
@@ -229,5 +230,6 @@ class MyScene extends CGFscene {
         this.popMatrix();
 
         // ---- END Primitive drawing section
+        this.setActiveShader(this.defaultShader);
     }
 }

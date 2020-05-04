@@ -18,11 +18,10 @@ class MyTerrain extends CGFobject {
     
     init(){
         this.shader = new CGFshader(this.scene.gl, "shaders/terrain.vert", "shaders/terrain.frag");
+
         this.textureTerrain = new CGFtexture(this.scene,'images/terrain.jpg');
         this.mapTerrain = new CGFtexture(this.scene,'images/heightmap.jpg'); 
 
-        
-        this.shader = new CGFshader(this.scene.gl, "shaders/terrain.vert", "shaders/terrain.frag");
         this.shader.setUniformsValues({uSampler1: 1});
         this.shader.setUniformsValues({ uSampler2: 2});
     }
@@ -34,13 +33,14 @@ class MyTerrain extends CGFobject {
        this.mapTerrain.bind(2);
        
        this.scene.pushMatrix();
-       this.scene.scale(50,50,1);
+       this.scene.rotate(-Math.PI/2.0,1,0,0);
+       this.scene.scale(50,50,1);//change z to 8
        this.plane.display();
 
        this.scene.popMatrix();
 
        // restore default shader (will be needed for drawing the axis in next frame)
-		this.setActiveShader(this.defaultShader);
+		this.scene.setActiveShader(this.scene.defaultShader);
 
     }
 }
