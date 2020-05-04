@@ -1,6 +1,7 @@
 /**
 * MyHelix
-* @constructor
+* @method constructor
+* @param  {CGFscene} scene - MyScene object
 */
 class MyHelix extends CGFobject {
     constructor(scene) {

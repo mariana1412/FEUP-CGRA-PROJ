@@ -1,6 +1,6 @@
 /**
  * MyVehicleBody
- * @constructor
+ * @method constructor
  * @param scene - Reference to MyScene object
  */
 class MyVehicleBody extends CGFobject {

@@ -1,4 +1,3 @@
-
 /** Represents a plane with nrDivs divisions along both axis, with center at (0,0) */
 class MyPlane extends CGFobject{
 	constructor(scene, nrDivs, minS, maxS, minT, maxT) {

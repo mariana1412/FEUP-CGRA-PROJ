@@ -1,6 +1,7 @@
 /**
 * MyStabilizer
-* @constructor
+* @method constructor
+* @param scene - Reference to MyScene object
 */
 class MyStabilizer extends CGFobject {
     constructor(scene) {

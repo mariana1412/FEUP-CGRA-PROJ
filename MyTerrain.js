@@ -1,6 +1,7 @@
 /**
 * MyTerrain
-* @constructor
+* @method constructor
+* @param scene - Reference to MyScene object
 */
 class MyTerrain extends CGFobject {
     constructor(scene) {

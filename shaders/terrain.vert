@@ -11,7 +11,6 @@ uniform mat4 uPMatrix;
 uniform mat4 uNMatrix;
 
 varying vec2 vTextureCoord;
-uniform sampler2D uSampler1;
 uniform sampler2D uSampler2;
 
 

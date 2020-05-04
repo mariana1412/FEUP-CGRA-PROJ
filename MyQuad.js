@@ -2,6 +2,7 @@
  * MyQuad
  * @constructor
  * @param scene - Reference to MyScene object
+ * @param coords - texcoords
  */
 class MyQuad extends CGFobject {
 	constructor(scene, coords) {

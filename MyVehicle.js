@@ -1,6 +1,7 @@
 /**
 * MyVehicle
-* @constructor
+* @method constructor
+* @param scene - Reference to MyScene object
 */
 class MyVehicle extends CGFobject {
     constructor(scene) {

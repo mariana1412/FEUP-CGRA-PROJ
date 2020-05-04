@@ -10,7 +10,7 @@ class MyCubeMap extends CGFobject {
         this.initTextures(scene);
     }
     initTextures(scene){
-        // com   componente   especular   e   difusa   nulas,   e   componente   ambiente   forte
+        // with zero specular and diffuse component, and strong ambient component
 
         //Left Texture
         this.left = new CGFappearance(this.scene);
