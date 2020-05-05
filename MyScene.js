@@ -34,7 +34,7 @@ class MyScene extends CGFscene {
         for(var i=0;i<5; i++){
             this.supplies.push(new MySupply(this));
         }
-
+        this.nSuppliesDelivered = 0;
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
             new MyCylinder(this, this.numberSlices),
@@ -138,10 +138,24 @@ class MyScene extends CGFscene {
                 keysPressed = true;
             }
         }
+        if(this.gui.isKeyPressed("KeyL")){//only one supply dropped at a time
+            text += "L";
+            while(this.nSuppliesDelivered!=5){
+                this.supplies[this.nSuppliesDelivered].drop(10,10);//a posiçao nao está certa
+                this.nSuppliesDelivered++;
+            }
+            
+            keysPressed = true;
+        }
         
         if(this.gui.isKeyPressed("KeyR")){
             text +="R";
             this.vehicle.reset();
+            this.nSuppliesDelivered = 0;
+            for(var i=0; i<5; i++){
+                this.supplies[i].state = SupplyStates.INACTIVE;
+                this.supplies[i].y = 10;
+            }
             keysPressed = true;
         }
         if(keysPressed)
@@ -157,6 +171,9 @@ class MyScene extends CGFscene {
     update(t){
         this.checkKeys(t);
         this.vehicle.update(t);
+        for(var i=0; i<5; i++){
+            this.supplies[i].update(t);
+        }
         //To be done...
     }
 

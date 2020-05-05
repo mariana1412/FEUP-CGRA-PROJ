@@ -30,7 +30,7 @@ class MySupply extends CGFobject {
 
     update(t){
         if(this.state == SupplyStates.FALLING){
-            this.y -= 1;
+            this.y -= 10/3;//it should take 3 seconds to hit the floor
             if(this.y == 0){
                 this.land();
             }
