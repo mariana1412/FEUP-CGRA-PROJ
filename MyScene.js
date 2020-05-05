@@ -49,8 +49,8 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = false;
-        this.displayVehicle = true;
-        this.displayTerrain = false;
+        this.displayVehicle = false;
+        this.displayTerrain = true;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
@@ -83,7 +83,7 @@ class MyScene extends CGFscene {
     
     }
     initLights() {
-        this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
+        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
@@ -91,7 +91,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {
@@ -215,13 +215,14 @@ class MyScene extends CGFscene {
         if(this.displayObjects)
             this.objects[this.currentObject].display();
         
-        if(this.displayTerrain)
+        if(this.displayTerrain){
+            this.currentTexture = 0;
             this.terrain.display();
-
+        }
             
         if(this.displayVehicle){
             this.pushMatrix();
-            //this.translate(0,10,0);
+            this.translate(0,10,0);
             this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
             this.vehicle.display();
             this.popMatrix();
