@@ -29,13 +29,16 @@ class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.vehicle = new MyVehicle(this, this.numberSlices, this.numberStacks);
-        this.terrain = new MyTerrain(this);
+        this.terrain = new MyTerrain(this); 
+        this.supplies = [];
+        for(var i=0;i<5; i++){
+            this.supplies.push(new MySupply(this));
+        }
 
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
             new MyCylinder(this, this.numberSlices),
-            new MyCubeMap(this),
-
+            new MyCubeMap(this)
         ];
 
         // Object interface variables
@@ -214,12 +217,17 @@ class MyScene extends CGFscene {
         
         if(this.displayObjects)
             this.objects[this.currentObject].display();
+     
         
         if(this.displayTerrain){
             this.currentTexture = 0;
             this.terrain.display();
         }
-            
+        
+        for(var i=0;i<5; i++){
+            this.supplies[i].display();
+        }
+
         if(this.displayVehicle){
             this.pushMatrix();
             this.translate(0,10,0);
@@ -227,6 +235,7 @@ class MyScene extends CGFscene {
             this.vehicle.display();
             this.popMatrix();
         }
+
 
         this.popMatrix();
 
