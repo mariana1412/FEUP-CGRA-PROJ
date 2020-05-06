@@ -15,26 +15,37 @@ class MySupply extends CGFobject {
         this.x = 0;
         this.y = 10;
         this.z = 0;
+
+        this.previousTime = 0; //ms
+        this.deltaTime = 0; //seconds
     }
-    drop(x,z){
+
+    drop(x, z){
         this.state = SupplyStates.FALLING;
         this.x = x;
         this.z = z;
     }
 
     land(){
-        this.y = 0; 
+        this.y = 0.5; //unico valor com que consegui ver a caixa no chao
+        this.previousTime = 0
         this.state = SupplyStates.LANDED;  
-    
     }
 
     update(t){
+
         if(this.state == SupplyStates.FALLING){
-            this.y -= 10/3;//it should take 3 seconds to hit the floor
-            if(this.y == 0){
+            if(this.previousTime == 0)
+                this.previousTime = t;
+
+            this.deltaTime = (t-this.previousTime)/1000;
+            this.previousTime = t;
+
+            this.y -= (10/3 * this.deltaTime); //i t should take 3 seconds to hit the floor
+
+            if(this.y <= 0.5){
                 this.land();
             }
-            //acabar -fazer animaçao da queda 
 
         }
     }

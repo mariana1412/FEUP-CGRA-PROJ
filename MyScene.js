@@ -30,11 +30,13 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.vehicle = new MyVehicle(this, this.numberSlices, this.numberStacks);
         this.terrain = new MyTerrain(this); 
+
         this.supplies = [];
-        for(var i=0;i<5; i++){
+        for(var i = 0; i < 5; i++){
             this.supplies.push(new MySupply(this));
         }
         this.nSuppliesDelivered = 0;
+
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
             new MyCylinder(this, this.numberSlices),
@@ -52,7 +54,7 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = false;
-        this.displayVehicle = false;
+        this.displayVehicle = true;
         this.displayTerrain = true;
         this.currentObject = 0;
         this.currentTexture = -1;
@@ -140,9 +142,12 @@ class MyScene extends CGFscene {
         }
         if(this.gui.isKeyPressed("KeyL")){//only one supply dropped at a time
             text += "L";
-            while(this.nSuppliesDelivered!=5){
-                this.supplies[this.nSuppliesDelivered].drop(10,10);//a posiçao nao está certa
-                this.nSuppliesDelivered++;
+            if (this.nSuppliesDelivered != 5){
+
+                if((this.nSuppliesDelivered == 0) || (this.nSuppliesDelivered != 0 && (this.supplies[this.nSuppliesDelivered-1].previousTime == 0))){
+                    this.supplies[this.nSuppliesDelivered].drop(this.vehicle.x, this.vehicle.z);
+                    this.nSuppliesDelivered++;
+                }
             }
             
             keysPressed = true;
@@ -151,13 +156,15 @@ class MyScene extends CGFscene {
         if(this.gui.isKeyPressed("KeyR")){
             text +="R";
             this.vehicle.reset();
+
             this.nSuppliesDelivered = 0;
-            for(var i=0; i<5; i++){
+            for(var i = 0; i < 5; i++){
                 this.supplies[i].state = SupplyStates.INACTIVE;
                 this.supplies[i].y = 10;
             }
             keysPressed = true;
         }
+
         if(keysPressed)
             console.log(text);
         
@@ -171,10 +178,11 @@ class MyScene extends CGFscene {
     update(t){
         this.checkKeys(t);
         this.vehicle.update(t);
+
         for(var i=0; i<5; i++){
             this.supplies[i].update(t);
         }
-        //To be done...
+        
     }
 
     updateComplexity(){
@@ -241,7 +249,7 @@ class MyScene extends CGFscene {
             this.terrain.display();
         }
         
-        for(var i=0;i<5; i++){
+        for(var i = 0; i<5; i++){
             this.supplies[i].display();
         }
 
