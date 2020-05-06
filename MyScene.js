@@ -153,7 +153,7 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
             this.nSuppliesDelivered = 0;
             for(var i=0; i<5; i++){
-                this.supplies[i].state = SupplyStates.INACTIVE;
+                this.supplies[i].state = SupplyStates.INACTIVE;//acho que isto os remove da cena mas not sure
                 this.supplies[i].y = 10;
             }
             keysPressed = true;
