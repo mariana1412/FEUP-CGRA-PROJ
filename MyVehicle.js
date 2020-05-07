@@ -23,18 +23,16 @@ class MyVehicle extends CGFobject {
 
         this.previousTime = 0; //ms
         this.deltaTime = 0; //seconds
-        this.deltaAngle = 0;
-        this.angularSpeed =360/5.0; // formula: 360/animationTime 
+        this.angularSpeed = 360/5.0 * (Math.PI / 180); // formula: 360/animationTime 
     }
 
     startAutoPilot(){
         
         this.automatic = true;
-        
-        this.pilotAngle = (this.angY + 90) * Math.PI / 180.0;
-
-        this.center_x = this.x + Math.sin(this.pilotAngle)*this.radius;
-        this.center_z = this.z + Math.cos(this.pilotAngle)*this.radius;
+        this.pilotAngle = (this.angY - 90) * Math.PI / 180.0;
+        var perpendicularAngle = (this.angY + 90) * Math.PI / 180.0;
+        this.center_x = this.x + Math.sin(perpendicularAngle)*this.radius;
+        this.center_z = this.z + Math.cos(perpendicularAngle)*this.radius;
     }
 
     update(t){      
@@ -49,16 +47,20 @@ class MyVehicle extends CGFobject {
         
         if(this.automatic){
 
-            sin = Math.sin(this.angY*Math.PI/180.0);
-            cos = Math.cos(this.angY*Math.PI/180.0);
-            this.x = -this.radius * cos + this.center_x;
-            this.z = this.radius * sin + this.center_z; 
-            
-            this.deltaAngle = this.deltaTime * this.angularSpeed;
+            var deltaAngle = this.deltaTime * this.angularSpeed;
 
-            this.turn(this.deltaAngle);  
+            this.pilotAngle += deltaAngle;
+
+            sin = Math.sin(this.pilotAngle);
+            cos = Math.cos(this.pilotAngle);
+            this.angY = (this.pilotAngle * 180 / Math.PI) + 90;
+            this.angY %= 360;
+
+            this.x = this.radius * sin + this.center_x;
+            this.z = this.radius * cos + this.center_z; 
+
+            this.vehiclebody.setStabilizerDir(-this.deltaAngle*4);
             this.vehiclebody.setHelixAng(5.0*t);
-            
         }
         else{
             sin = Math.sin(this.angY*Math.PI/180.0);
@@ -110,7 +112,7 @@ class MyVehicle extends CGFobject {
 
         //orientar a posiçao do veiculo
         this.scene.translate(this.x, this.y, this.z);
-        this.scene.rotate(this.angY*Math.PI/180.0, 0, 1, 0);
+        this.scene.rotate(this.angY*Math.PI/180, 0, 1, 0);
 
         //this.scene.translate(0, 0, -0.5);//para o eixo dos y estar a meio
         //this.scene.rotate(Math.PI/2.0,1,0,0);//rodar para o eixo dos z

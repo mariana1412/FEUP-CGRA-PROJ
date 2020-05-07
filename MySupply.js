@@ -8,7 +8,9 @@ const SupplyStates =  {       INACTIVE: 0,       FALLING: 1,       LANDED: 2   }
 class MySupply extends CGFobject {
 	constructor(scene) {
         super(scene);
+
         this.woodBox = new MyWoodBox(this.scene);
+        //this.woodBoxLanded = new MyWoodBoxLanded(this.scene);
 
         this.state = SupplyStates.INACTIVE;
 
@@ -18,7 +20,11 @@ class MySupply extends CGFobject {
 
         this.previousTime = 0; //ms
         this.deltaTime = 0; //seconds
+
+        
+
     }
+    
 
     drop(x, z){
         this.state = SupplyStates.FALLING;
@@ -41,7 +47,7 @@ class MySupply extends CGFobject {
             this.deltaTime = (t-this.previousTime)/1000;
             this.previousTime = t;
 
-            this.y -= (10/3 * this.deltaTime); //i t should take 3 seconds to hit the floor
+            this.y -= (10/3 * this.deltaTime); //it should take 3 seconds to hit the floor
 
             if(this.y <= 0.5){
                 this.land();
@@ -51,13 +57,21 @@ class MySupply extends CGFobject {
     }
     
     display() {// When it hasn't yet been released, it is not drawn
-        if(this.state != SupplyStates.INACTIVE){
-            this.scene.pushMatrix();
+
+        this.scene.pushMatrix();
+
+        if(this.state == SupplyStates.FALLING){
             this.scene.translate(this.x,this.y,this.z);
+            this.scene.scale(0.5,0.5,0.5);
             this.woodBox.display();
-            this.scene.popMatrix();
+            
         }
-    
+        /*else if(this.state == SupplyStates.LANDED){
+            this.scene.scale(0.5,0.5,0.5);
+            this.woodBox.display();
+        }*/
+
+        this.scene.popMatrix();
     }
 
 }

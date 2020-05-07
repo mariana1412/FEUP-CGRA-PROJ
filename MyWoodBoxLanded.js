@@ -1,18 +1,19 @@
 /**
- * MyWoodBox
+ * MyWoodBoxLanded
  * @constructor
  * @param scene - Reference to MyScene object
  */
-class MyWoodBox extends CGFobject {
+class MyWoodBoxLanded extends CGFobject {
 	constructor(scene) {
         super(scene);
+
         this.quad = new MyQuad(this.scene);
 
-        this.initTextures();
+        this.initTextures(scene);
     }
-    initTextures(){
-        // with zero specular and diffuse component, and strong ambient component
 
+    initTextures(){
+/*
         //Wood Texture
         this.woodTexture = new CGFappearance(this.scene);
         this.woodTexture.setAmbient(0.9, 0.9, 0.9, 1);
@@ -21,11 +22,11 @@ class MyWoodBox extends CGFobject {
         this.woodTexture.setShininess(10.0);
         this.woodTexture.loadTexture('images/woodBox.png');
         this.woodTexture.setTextureWrap('REPEAT', 'REPEAT');
-
+*/
     }
 
 	display() {
-        //scalling
+      /*  //scalling
         this.scene.pushMatrix();
         this.scene.scale(1, 1, 1);
         this.woodTexture.apply();
@@ -71,7 +72,7 @@ class MyWoodBox extends CGFobject {
         this.quad.display();
         this.scene.popMatrix();
 
-        this.scene.popMatrix();
+        this.scene.popMatrix();*/
     }
 }
 

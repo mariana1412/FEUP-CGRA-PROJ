@@ -96,7 +96,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.6, 0.6, 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {
@@ -178,20 +178,21 @@ class MyScene extends CGFscene {
     
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
-        this.checkKeys(t);
-        this.vehicle.update(t);
-
-        for(var i=0; i<5; i++){
-            this.supplies[i].update(t);
-        }
+       // if(this.displayVehicle){
+            this.checkKeys(t);
+            this.vehicle.update(t);
+    
+            for(var i=0; i<5; i++){
+                this.supplies[i].update(t);
+            }   
+        //}
         
     }
 
     updateComplexity(){
         this.vehicle.updateBuffers(this.complexity);
     }
-
-        // called when a new object is selected
+    // called when a new object is selected
 	selectedObject() {
 		this.objects[this.currentObject];
     }
