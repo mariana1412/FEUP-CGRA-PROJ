@@ -27,7 +27,7 @@ class MyWoodBox extends CGFobject {
 	display() {
         //scalling
         this.scene.pushMatrix();
-        this.scene.scale(1, 1, 1);
+        this.scene.scale(0.7, 0.7, 0.7);
         this.woodTexture.apply();
 
         //Right

@@ -9,11 +9,11 @@ class MyWoodBoxLanded extends CGFobject {
 
         this.quad = new MyQuad(this.scene);
 
-        this.initTextures(scene);
+        this.initTextures();
     }
 
     initTextures(){
-/*
+
         //Wood Texture
         this.woodTexture = new CGFappearance(this.scene);
         this.woodTexture.setAmbient(0.9, 0.9, 0.9, 1);
@@ -22,57 +22,51 @@ class MyWoodBoxLanded extends CGFobject {
         this.woodTexture.setShininess(10.0);
         this.woodTexture.loadTexture('images/woodBox.png');
         this.woodTexture.setTextureWrap('REPEAT', 'REPEAT');
-*/
+
     }
 
 	display() {
-      /*  //scalling
         this.scene.pushMatrix();
-        this.scene.scale(1, 1, 1);
+        this.scene.scale(0.7, 0.7, 0.7);
+        this.scene.translate(0, -0.35, 0);
         this.woodTexture.apply();
+
+        //Bottom
+        this.scene.pushMatrix();
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
+        this.quad.display();
+        this.scene.popMatrix();
 
         //Right
         this.scene.pushMatrix();
-        this.scene.translate(0.5, 0, 0);
-        this.scene.rotate(-Math.PI / 2, 0, 1, 0);
-        this.quad.display();
-        this.scene.popMatrix();
-		
-        //Back
-        this.scene.pushMatrix();
-        this.scene.translate(0, 0, -0.5);
+        this.scene.translate(1, 0, 0);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.quad.display();
         this.scene.popMatrix();
 
         //Left
         this.scene.pushMatrix();
-        this.scene.translate(-0.5, 0, 0);
-        this.scene.rotate(Math.PI / 2, 0, 1, 0);
+        this.scene.translate(-1, 0, 0);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.quad.display();
         this.scene.popMatrix();
 
         //Front
         this.scene.pushMatrix();
-        this.scene.translate(0, 0, 0.5);
-        this.scene.rotate(Math.PI, 0, 1, 0);
-        this.quad.display();
-        this.scene.popMatrix();
-		
-        //Top
-        this.scene.pushMatrix();
-        this.scene.translate(0, 0.5, 0);
+        this.scene.translate(0, 0, -1);
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.quad.display();
         this.scene.popMatrix();
 
-        //Bottom
+        //Back
         this.scene.pushMatrix();
-        this.scene.translate(0, -0.5, 0);
-        this.scene.rotate(-Math.PI / 2, 1, 0, 0);
+        this.scene.translate(0, 0, 1);
+        this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.quad.display();
         this.scene.popMatrix();
 
-        this.scene.popMatrix();*/
+        this.scene.popMatrix();
+   
     }
 }
 

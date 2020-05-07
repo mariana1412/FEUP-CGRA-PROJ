@@ -96,7 +96,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.6, 0.6, 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {
@@ -252,13 +252,13 @@ class MyScene extends CGFscene {
             this.terrain.display();
         }
         
-        for(var i = 0; i<5; i++){
+        for(var i = 0; i < 5; i++){
             this.supplies[i].display();
         }
 
         if(this.displayVehicle){
             this.pushMatrix();
-            this.translate(0,10,0);
+            this.translate(0, 10, 0);
             this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
             this.vehicle.display();
             this.popMatrix();
