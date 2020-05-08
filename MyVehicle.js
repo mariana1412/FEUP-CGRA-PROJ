@@ -6,6 +6,7 @@
 class MyVehicle extends CGFobject {
     constructor(scene) {
         super(scene);
+        //this para inicializar os shaders da flag no veiculo--confirmar
 
         this.vehiclebody = new MyVehicleBody(scene);
         

@@ -25,19 +25,18 @@ class MyScene extends CGFscene {
 
         this.numberSlices = 16;
         this.numberStacks = 8;
+        this.nSuppliesDelivered = 0;
         
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.vehicle = new MyVehicle(this, this.numberSlices, this.numberStacks);
         this.terrain = new MyTerrain(this); 
         
-
         this.supplies = [];
         for(var i = 0; i < 5; i++){
             this.supplies.push(new MySupply(this));
         }
-        this.nSuppliesDelivered = 0;
-
+        
         this.objects=[
             new MySphere(this, this.numberSlices, this.numberStacks),
             new MyCylinder(this, this.numberSlices),
@@ -56,7 +55,7 @@ class MyScene extends CGFscene {
         this.displayAxis = true;
         this.displayObjects = false;
         this.displayVehicle = true;
-        this.displayTerrain = false;
+        this.displayTerrain = true;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
@@ -242,12 +241,18 @@ class MyScene extends CGFscene {
 
         if(this.currentTexture != -1)
             this.material.apply();
-
+        //ainda temos que arranjar forma de limitar as texturas
         
         if(this.displayObjects)
+            if((this.displayVehicle || this.displayTerrain)){
+                if(this.currentObject==2){
+                    this.objects[this.currentObject].display();
+                }  
+            }
+            else if(!(this.displayTerrain || this.displayVehicle))
             this.objects[this.currentObject].display();
-     
-        
+
+
         if(this.displayTerrain){
             this.currentTexture = 0;
             this.terrain.display();
