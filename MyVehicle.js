@@ -8,13 +8,14 @@ class MyVehicle extends CGFobject {
         super(scene);
 
         this.vehiclebody = new MyVehicleBody(scene);
-        this.flag = new MyFlag(scene);
+        
         this.angY = 0;
         this.speed = 0;
         this.x = 0;
         this.y = 0;
         this.z = 0;
         this.automatic = false;
+        this.acceleration = 0;
         
         this.center_x = 0;
         this.center_z = 0;
@@ -70,7 +71,7 @@ class MyVehicle extends CGFobject {
             this.vehiclebody.setHelixAng(this.speed*t);
         }
         //update flag
-        this.flag.update(t);
+        this.vehiclebody.flag.update(this.speed,this.acceleration,this.t);
         
     }
     
@@ -89,6 +90,7 @@ class MyVehicle extends CGFobject {
     }
 
     accelerate(val){
+        this.acceleration = val;
         this.speed = this.speed + val;
         if(this.speed < 0)
             this.speed = 0;
@@ -100,8 +102,9 @@ class MyVehicle extends CGFobject {
         this.z = 0;
         this.angY = 0;
         this.speed = 0;
+        this.acceleration = 0;
         this.automatic = false;
-        //update flag
+        this.vechilebody.flag.update(this.speed,0);
     }
 
 
@@ -122,8 +125,9 @@ class MyVehicle extends CGFobject {
 
         //this.scene.scale(3,3,3);
         this.vehiclebody.display();
-        this.scene.popMatrix();  
-        this.flag.display();
+        this.scene.popMatrix(); 
+
+
 
     }
 }

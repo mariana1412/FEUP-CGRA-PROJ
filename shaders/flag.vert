@@ -24,7 +24,12 @@ void main() {
 
     vec3 offset = vec3(0.0,0.0,0.0);
 
-    offset = aVertexNormal * texture2D(uSampler2, vTextureCoord).r;
+    if (acceleration >= 0.0)
+        offset.z += cos((aVertexPosition.x + timeFactor + speed) * 3.0) * 0.5 * (aVertexPosition.x - 0.5);
+    else
+        offset.z += cos((aVertexPosition.x + timeFactor - speed) * 3.0) * 0.5 * (aVertexPosition.x - 0.5);
+
+    // offset = aVertexNormal * texture2D(uSampler2, vTextureCoord).r;
 
     gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 

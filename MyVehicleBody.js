@@ -15,6 +15,7 @@ class MyVehicleBody extends CGFobject {
 
         this.stabilizerDir = 0;
         this.helixAng = 0;  
+        this.flag = new MyFlag(scene);
 
         this.initTextures();
     }   
@@ -143,6 +144,12 @@ class MyVehicleBody extends CGFobject {
         this.stabilizer.display();
         this.scene.popMatrix();
 
+        this.scene.popMatrix();
+
+        this.scene.pushMatrix();
+        this.scene.translate(0,0,-2.55); 
+        this.scene.scale(0.9,0.9,0.9);
+        this.flag.display();
         this.scene.popMatrix();
     }
 
