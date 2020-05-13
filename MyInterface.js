@@ -55,10 +55,18 @@ class MyInterface extends CGFinterface {
         //called when a key is released, mark it as inactive in the array
         this.activeKeys[event.code]=false;
     };
-
-    isKeyPressed(keyCode){
+    isKeyPressed(keyCode) {
         //returns true if a key is marked as pressed, false otherwise
+        if(this.activeKeys[keyCode] === true){
+          this.activeKeys[keyCode] = false;
+          return true;
+        }  
+          return this.activeKeys[keyCode] || false;
+     }
+
+    /*isKeyPressed(keyCode){
+        
         return this.activeKeys[keyCode] || false;
-    }
+    }*/
     
 }   

@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.vehicle = new MyVehicle(this, this.numberSlices, this.numberStacks);
         this.terrain = new MyTerrain(this); 
+        this.billboard = new MyBillboard(this);
         
         this.supplies = [];
         for(var i = 0; i < 5; i++){
@@ -149,7 +150,7 @@ class MyScene extends CGFscene {
                     this.nSuppliesDelivered++;
                 }
             }
-            
+            this.billboard.update();
             keysPressed = true;
         }
         
@@ -158,12 +159,13 @@ class MyScene extends CGFscene {
             this.vehicle.reset();
 
             this.nSuppliesDelivered = 0;
-
-
+            
             for(var i = 0; i < 5; i++){
                 this.supplies[i].state = SupplyStates.INACTIVE;
                 this.supplies[i].y = 10;
             }
+
+            this.billboard.reset();
             keysPressed = true;
         }
 
@@ -261,6 +263,8 @@ class MyScene extends CGFscene {
         for(var i = 0; i < 5; i++){
             this.supplies[i].display();
         }
+
+        this.billboard.display();
 
         if(this.displayVehicle){
             this.pushMatrix();
