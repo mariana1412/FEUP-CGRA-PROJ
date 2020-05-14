@@ -2,13 +2,19 @@
 precision highp float;
 #endif
 
-varying vec2 vTextureCoord;
+varying vec4 coords;
+varying vec4 normal;
 
-uniform sampler2D uSampler1;
-
+uniform int nSuppliesDelivered;
 
 void main() {
-    vec4 color = texture2D(uSampler1, vTextureCoord);
+    float separator = 0.6 + (1.5/5.0)*float(nSuppliesDelivered);
 
-	gl_FragColor = color;
+    if(coords.x > separator){
+        gl_FragColor = vec4(0.5, 0.5, 0.5, 1.0);
+    }
+    else{
+        gl_FragColor.rgb =  vec3(1.0 - (0.6 + coords.x / 0.6), 0.6 + coords.x / 0.6, 0);//decidir isto
+        gl_FragColor.a = 1.0;//continuar?
+    }
 }

@@ -55,8 +55,8 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = false;
-        this.displayVehicle = false;
-        this.displayTerrain = false;
+        this.displayVehicle = true;
+        this.displayTerrain = true;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
@@ -97,7 +97,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.7, 0.7  , 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.5, 0.5  , 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {

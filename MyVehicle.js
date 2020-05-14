@@ -72,7 +72,7 @@ class MyVehicle extends CGFobject {
             this.vehiclebody.setHelixAng(this.speed*t);
         }
         //update flag
-        this.vehiclebody.flag.update(this.speed,this.acceleration,this.t);
+        this.vehiclebody.flag.update(this.speed, this.t);
         
     }
     

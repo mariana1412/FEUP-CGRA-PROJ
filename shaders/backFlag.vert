@@ -13,24 +13,15 @@ uniform mat4 uNMatrix;
 varying vec2 vTextureCoord;
 uniform sampler2D uSampler2;
 
-uniform float timeFactor;
-uniform float speed;
-uniform float acceleration;
-
+uniform float phase;
 
 void main() {
 
     vTextureCoord = aTextureCoord;
 
-    vec3 offset = vec3(0.0,0.0,0.0);
-    
-    if (acceleration >= 0.0)
-        offset.z += cos((aVertexPosition.x + timeFactor + speed) * 3.0) * 0.5 * (aVertexPosition.x - 0.5);
-    else
-        offset.z += cos((aVertexPosition.x + timeFactor - speed) * 3.0) * 0.5 * (aVertexPosition.x - 0.5);
+    vec3 offset = vec3(0.0, 0.0, 0.0); 
 
-    //offset = aVertexNormal * texture2D(uSampler2, vTextureCoord).r;
+    offset.z = sin(aVertexPosition.x*float(20) - phase);
 
     gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
-
 }

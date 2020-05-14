@@ -14,9 +14,9 @@ class MyBillboard extends CGFobject {
         this.beamRight = new My2SideQuad(this.scene);
         this.nSuppliesDelivered = 0;
 
-        this.initTextures();
+        this.initShaders();
 
-        //this.initShaders();
+        this.initTextures();
     }
 
     initTextures() {
@@ -40,9 +40,8 @@ class MyBillboard extends CGFobject {
     }
     
     initShaders(){
-        
-        /*this.shader = new CGFshader(this.scene.gl, "shaders/progressBar.vert", "shaders/progressBar.frag");
-        this.shader.setUniformsValues({nSuppliesDelivered: nSuppliesDelivered});*/
+        this.shader = new CGFshader(this.scene.gl, "shaders/progressBar.vert", "shaders/progressBar.frag");
+        this.shader.setUniformsValues({nSuppliesDelivered: 0});
     }
     update(){
        // this.shader.setUniformsValues({nSuppliesDelivered: ++this.nSuppliesDelivered});
@@ -54,7 +53,9 @@ class MyBillboard extends CGFobject {
 
     display(){
         this.scene.pushMatrix();
-        this.scene.scale(5,5,5);
+        this.scene.translate(11,8,16);
+        this.scene.rotate(Math.PI/4.0,0,1,0);
+        
         
         //Left Beam
         this.scene.pushMatrix();
@@ -90,14 +91,17 @@ class MyBillboard extends CGFobject {
         this.baseBack.display();
         this.scene.popMatrix();
 
-        /*
+        this.scene.pushMatrix();
         this.scene.setActiveShader(this.shader);
         this.scene.scale(1.5,0.2,1);    
         this.scene.pushMatrix();
-        this.scene.translate(0,0,0.01);
+        this.scene.rotate(Math.PI/2.0,0,1,0);
+        this.scene.translate(0,-1,0.01);
         this.progressBar.display();
-        this.scene.popMatrix(); */
-
+        this.scene.popMatrix(); 
+        this.scene.popMatrix();
+        
+        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.popMatrix();
     }
 }

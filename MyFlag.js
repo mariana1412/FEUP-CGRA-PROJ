@@ -9,6 +9,8 @@ class MyFlag extends CGFobject {
         this.planeFront = new MyPlane(this.scene);
         this.planeBack = new MyPlane(this.scene);
         this.strip = new My2SideQuad(this.scene);
+        this.phase = 0;
+        this.previousTime = 0;
 
         this.initTextures();
     }
@@ -29,26 +31,29 @@ class MyFlag extends CGFobject {
         this.stripTexture.setTextureWrap('REPEAT', 'REPEAT');
 
 
-        this.shaderFront.setUniformsValues({ uSampler1: 1 });
-        this.shaderFront.setUniformsValues({ speed: 0 });
-        this.shaderFront.setUniformsValues({ timeFactor: 0 });
+        this.shaderFront.setUniformsValues({ uSampler1: 1});
+        this.shaderFront.setUniformsValues({ phase: 0});
+
 
         this.shaderBack.setUniformsValues({ uSampler1: 1 });
-        this.shaderBack.setUniformsValues({ speed: 0 });
-        this.shaderBack.setUniformsValues({ timeFactor: 0 });
+        this.shaderBack.setUniformsValues({ phase: 0});
+
     }
 
+    update(speed, time){
+        
+        if(this.previousTime == 0)
+            this.previousTime = time;
 
+        var deltaTime = (time-this.previousTime)/1000;
+        this.previousTime = time;
 
-    update(speed, acceleration, time){
-        //TO DO 
-        this.shaderFront.setUniformsValues({ speed: speed });
-        this.shaderFront.setUniformsValues({ timeFactor: time });
-        this.shaderFront.setUniformsValues({ acceleration: acceleration });
+        var deltaX = deltaTime * speed;
+        this.phase += deltaX;
 
-        this.shaderBack.setUniformsValues({ speed: speed });
-        this.shaderBack.setUniformsValues({ timeFactor: time });
-        this.shaderBack.setUniformsValues({ acceleration: acceleration });
+        this.shaderFront.setUniformsValues({phase: this.phase});
+        console.log("BROOOOOOOOOOOOOOOO\n");
+        this.shaderBack.setUniformsValues({phase: this.phase});
     }
     
     display() {
