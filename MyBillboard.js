@@ -44,23 +44,23 @@ class MyBillboard extends CGFobject {
         this.shader.setUniformsValues({nSuppliesDelivered: 0});
     }
     update(){
-       // this.shader.setUniformsValues({nSuppliesDelivered: ++this.nSuppliesDelivered});
+        this.shader.setUniformsValues({nSuppliesDelivered: ++this.nSuppliesDelivered});
     }
     reset(){
-        //this.nSuppliesDelivered = 0;
-        //this.shader.setUniformsValues({nSuppliesDelivered: this.nSuppliesDelivered});
+        this.nSuppliesDelivered = 0;
+        this.shader.setUniformsValues({nSuppliesDelivered: 0});
     }
 
     display(){
         this.scene.pushMatrix();
-        this.scene.translate(11,8,16);
-        this.scene.rotate(Math.PI/4.0,0,1,0);
+        this.scene.translate(2,9,17);
+        this.scene.rotate(-Math.PI/8.0,0,1,0);
         
         
         //Left Beam
         this.scene.pushMatrix();
         this.beamTexture.apply();
-        this.scene.translate(0,-1,-0.945);
+        this.scene.translate(0,-1,-0.946);
         this.scene.rotate(Math.PI/2.0,0,1,0);
         this.scene.scale(0.10,1,1);
         this.beamLeft.display();
@@ -69,7 +69,7 @@ class MyBillboard extends CGFobject {
         //Right Beam
         this.scene.pushMatrix();
         this.beamTexture.apply();
-        this.scene.translate(0,-1,0.945);
+        this.scene.translate(0,-1,0.946);
         this.scene.rotate(Math.PI/2.0,0,1,0);
         this.scene.scale(0.10,1,1);
         this.beamRight.display();

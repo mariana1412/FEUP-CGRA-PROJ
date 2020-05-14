@@ -19,6 +19,10 @@ class MyVehicleBody extends CGFobject {
 
         this.initTextures();
     }   
+
+    updateFlag(speed, time){
+        this.flag.update(speed, time);
+    }
    
     setHelixAng(angle){
         this.helixAng = angle * Math.PI /180.0;

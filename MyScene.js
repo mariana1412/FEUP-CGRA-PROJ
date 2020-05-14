@@ -148,9 +148,10 @@ class MyScene extends CGFscene {
                 if((this.nSuppliesDelivered == 0) || (this.nSuppliesDelivered != 0 && (this.supplies[this.nSuppliesDelivered-1].previousTime == 0))){
                     this.supplies[this.nSuppliesDelivered].drop(this.vehicle.x, this.vehicle.z);
                     this.nSuppliesDelivered++;
+                    this.billboard.update();
                 }
             }
-            this.billboard.update();
+            
             keysPressed = true;
         }
         

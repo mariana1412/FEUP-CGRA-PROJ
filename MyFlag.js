@@ -6,8 +6,8 @@
 class MyFlag extends CGFobject {
 	constructor(scene) {
         super(scene);
-        this.planeFront = new MyPlane(this.scene);
-        this.planeBack = new MyPlane(this.scene);
+        this.planeFront = new MyPlane(this.scene, 30);
+        this.planeBack = new MyPlane(this.scene, 30);
         this.strip = new My2SideQuad(this.scene);
         this.phase = 0;
         this.previousTime = 0;
@@ -48,11 +48,10 @@ class MyFlag extends CGFobject {
         var deltaTime = (time-this.previousTime)/1000;
         this.previousTime = time;
 
-        var deltaX = deltaTime * speed;
+        var deltaX = deltaTime * speed + 2.0;
         this.phase += deltaX;
 
         this.shaderFront.setUniformsValues({phase: this.phase});
-        console.log("BROOOOOOOOOOOOOOOO\n");
         this.shaderBack.setUniformsValues({phase: this.phase});
     }
     
