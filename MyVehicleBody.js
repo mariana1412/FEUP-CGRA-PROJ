@@ -111,6 +111,24 @@ class MyVehicleBody extends CGFobject {
 
         
         //Stabilizers
+        this.scene.pushMatrix();
+        
+
+        //left
+        this.scene.pushMatrix();
+        this.whiteTexture.apply();
+        this.scene.translate(0.35,0,-1);
+        this.stabilizer.display();
+        this.scene.popMatrix();
+
+        //right
+        this.scene.pushMatrix();
+        this.whiteTexture.apply();
+        this.scene.translate(-0.35,0,-1);
+        this.scene.rotate(Math.PI,0,0,1);
+        this.stabilizer.display();
+        this.scene.popMatrix();
+        
         //top
         this.scene.pushMatrix();
         this.blueTexture.apply();
@@ -129,31 +147,18 @@ class MyVehicleBody extends CGFobject {
         this.stabilizer.display();
         this.scene.popMatrix();
 
-        //left
-        this.scene.pushMatrix();
-        this.whiteTexture.apply();
-        this.scene.translate(0.35,0,-1);
-        this.stabilizer.display();
         this.scene.popMatrix();
-
-        //right
-        this.scene.pushMatrix();
-        this.whiteTexture.apply();
-        this.scene.translate(-0.35,0,-1);
-        this.scene.rotate(Math.PI,0,0,1);
-        this.stabilizer.display();
-        this.scene.popMatrix();
-
-        this.scene.popMatrix();
-
+        
+        
+        //Flag
         this.scene.pushMatrix();
         this.scene.translate(0,0,-2.55); 
         this.scene.scale(0.9,0.9,0.9);
         this.flag.display();
         this.scene.popMatrix();
-    }
 
-    
+        this.scene.popMatrix();
+    }
     
 }
 

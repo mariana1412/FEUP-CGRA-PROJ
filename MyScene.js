@@ -55,8 +55,8 @@ class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.displayObjects = false;
-        this.displayVehicle = true;
-        this.displayTerrain = true;
+        this.displayVehicle = false;
+        this.displayTerrain = false;
         this.currentObject = 0;
         this.currentTexture = -1;
         this.complexity = 0.0;
@@ -269,7 +269,6 @@ class MyScene extends CGFscene {
         if(this.displayVehicle){
             this.pushMatrix();
             this.translate(0, 10, 0);
-            //this.scale(10,10,10);
             this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
             this.vehicle.display();
             this.popMatrix();

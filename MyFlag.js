@@ -20,6 +20,14 @@ class MyFlag extends CGFobject {
         this.shaderBack = new CGFshader(this.scene.gl, "shaders/backFlag.vert", "shaders/backFlag.frag");
         this.flagTexture = new CGFtexture(this.scene,'images/flag.png');
 
+        this.stripTexture = new CGFappearance(this.scene);
+        this.stripTexture.setAmbient(0.7,0.7,0.7,1);
+        this.stripTexture.setDiffuse(0.9,0.9,0.9,1);
+        this.stripTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.stripTexture.setShininess(10.0);
+        this.stripTexture.loadTexture('images/redTexture.png');
+        this.stripTexture.setTextureWrap('REPEAT', 'REPEAT');
+
 
         this.shaderFront.setUniformsValues({ uSampler1: 1 });
         this.shaderFront.setUniformsValues({ speed: 0 });
@@ -50,6 +58,7 @@ class MyFlag extends CGFobject {
         this.scene.setActiveShader(this.scene.defaultShader);
  
         this.scene.pushMatrix();
+        this.stripTexture.apply();
         this.scene.translate(-0.02,0.40,1.12);
         this.scene.rotate(Math.PI/2.0,1,0,0);
         this.scene.scale(0.020,1,3);
@@ -58,15 +67,13 @@ class MyFlag extends CGFobject {
 
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
+        this.stripTexture.apply();
         this.scene.translate(-0.02,-0.40,1.12);
         this.scene.rotate(Math.PI/2.0,1,0,0);
         this.scene.scale(0.020,1,3);
-        
         this.strip.display();
         this.scene.popMatrix();
-
-
-        
+      
 
         this.scene.setActiveShader(this.shaderFront);
         this.scene.scale(0.8,0.8,1.3);

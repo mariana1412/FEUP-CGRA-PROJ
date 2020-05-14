@@ -21,9 +21,8 @@ class MyStabilizer extends CGFobject {
 
     display(){
         this.scene.pushMatrix();
-          
-        //this.scene.rotate(this.angle,1,0,0);
-        //this.scene.translate(0,0,-0.4);
+        this.scene.scale(1.5,1.5,1.5);
+
 
         //quad
         this.scene.pushMatrix();
