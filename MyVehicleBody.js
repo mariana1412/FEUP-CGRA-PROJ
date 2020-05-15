@@ -36,7 +36,7 @@ class MyVehicleBody extends CGFobject {
         this.blimpBody = new CGFappearance(this.scene);
         this.blimpBody.setAmbient(0.7,0.7,0.7,1);
         this.blimpBody.setDiffuse(0.9,0.9,0.9,1);
-        this.blimpBody.setDiffuse(0.2,0.2,0.2,1);
+        this.blimpBody.setSpecular(0.2,0.2,0.2,1);
         this.blimpBody.setShininess(10.0);
         this.blimpBody.loadTexture('images/vehicleBody.png');
         this.blimpBody.setTextureWrap('REPEAT', 'REPEAT');
@@ -44,7 +44,7 @@ class MyVehicleBody extends CGFobject {
         this.redTexture = new CGFappearance(this.scene);
         this.redTexture.setAmbient(0.7,0.7,0.7,1);
         this.redTexture.setDiffuse(0.9,0.9,0.9,1);
-        this.redTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.redTexture.setSpecular(0.2,0.2,0.2,1);
         this.redTexture.setShininess(10.0);
         this.redTexture.loadTexture('images/redTexture.png');
         this.redTexture.setTextureWrap('REPEAT', 'REPEAT');
@@ -52,7 +52,7 @@ class MyVehicleBody extends CGFobject {
         this.blueTexture = new CGFappearance(this.scene);
         this.blueTexture.setAmbient(0.7,0.7,0.7,1);
         this.blueTexture.setDiffuse(0.9,0.9,0.9,1);
-        this.blueTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.blueTexture.setSpecular(0.2,0.2,0.2,1);
         this.blueTexture.setShininess(10.0);
         this.blueTexture.loadTexture('images/blueTexture.png');
         this.blueTexture.setTextureWrap('REPEAT', 'REPEAT');
@@ -60,7 +60,7 @@ class MyVehicleBody extends CGFobject {
         this.whiteTexture = new CGFappearance(this.scene);
         this.whiteTexture.setAmbient(0.7,0.7,0.7,1);
         this.whiteTexture.setDiffuse(0.9,0.9,0.9,1);
-        this.whiteTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.whiteTexture.setSpecular(0.2,0.2,0.2,1);
         this.whiteTexture.setShininess(10.0);
         this.whiteTexture.loadTexture('images/whiteTexture.png');
         this.whiteTexture.setTextureWrap('REPEAT', 'REPEAT');
@@ -68,14 +68,14 @@ class MyVehicleBody extends CGFobject {
     }
 
 	display() {
-        //this.scene.setAmbient(0.5, 0.5, 0.5, 1.0);
-        
+                
         this.scene.pushMatrix();
         
         //sphere- balao
         
         this.scene.pushMatrix();
         this.blimpBody.apply();
+        //this.scene.scale(1, 1, 2);
         this.scene.scale(0.5,0.5, 1);
         this.sphere.display();
         this.scene.popMatrix();

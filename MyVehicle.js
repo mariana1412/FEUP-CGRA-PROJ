@@ -112,18 +112,12 @@ class MyVehicle extends CGFobject {
 
     display(){
         
-        this.scene.setAmbient(0.5, 0.5, 0.5, 1.0);
         this.scene.pushMatrix(); 
-
+        this.scene.setAmbient(0.5, 0.5, 0.5, 1.0);
         //orientar a posiçao do veiculo
         this.scene.translate(this.x, this.y, this.z);
         this.scene.rotate(this.angY*Math.PI/180, 0, 1, 0);
 
-        //this.scene.translate(0, 0, -0.5);//para o eixo dos y estar a meio
-        //this.scene.rotate(Math.PI/2.0,1,0,0);//rodar para o eixo dos z
-        //super.display();//tipo override o display de scene
-
-        //this.scene.scale(3,3,3);
         this.vehiclebody.display();
 
         this.scene.popMatrix(); 

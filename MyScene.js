@@ -67,7 +67,7 @@ class MyScene extends CGFscene {
         this.material=new CGFappearance(this);
         this.material.setAmbient(0.7,0.7,0.7,1);
         this.material.setDiffuse(0.9,0.9,0.9,1);
-        this.material.setDiffuse(0.2,0.2,0.2,1);
+        this.material.setSpecular(0.2,0.2,0.2,1);
         this.material.setShininess(10.0);
         this.material.loadTexture('images/earth.jpg');
         this.material.setTextureWrap('REPEAT','REPEAT');
@@ -89,7 +89,7 @@ class MyScene extends CGFscene {
     
     }
     initLights() {
-        this.setGlobalAmbientLight(0.3, 0.3, 0.3, 1.0);
+        this.setGlobalAmbientLight(0.5, 0.5, 0.5, 1.0);
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
         this.lights[0].enable();
@@ -157,16 +157,9 @@ class MyScene extends CGFscene {
         
         if(this.gui.isKeyPressed("KeyR")){
             text +="R";
-            this.vehicle.reset();
-
-            this.nSuppliesDelivered = 0;
             
-            for(var i = 0; i < 5; i++){
-                this.supplies[i].state = SupplyStates.INACTIVE;
-                this.supplies[i].y = 10;
-            }
+            this.resetVehicle();
 
-            this.billboard.reset();
             keysPressed = true;
         }
 
@@ -178,6 +171,18 @@ class MyScene extends CGFscene {
        
     }
 
+    resetVehicle(){
+        this.vehicle.reset();
+
+        this.nSuppliesDelivered = 0;
+        
+        for(var i = 0; i < 5; i++){
+            this.supplies[i].state = SupplyStates.INACTIVE;
+            this.supplies[i].y = 10;
+        }
+
+        this.billboard.reset();
+    }
     
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
@@ -258,22 +263,28 @@ class MyScene extends CGFscene {
 
         if(this.displayTerrain){
             this.currentTexture = 0;
+            this.currentObject = 2;
+            this.displayObjects = true;
             this.terrain.display();
         }
         
-        for(var i = 0; i < 5; i++){
-            this.supplies[i].display();
-        }
-
-        this.billboard.display();
+               
 
         if(this.displayVehicle){
+            this.billboard.display();
+
+            for(var i = 0; i < 5; i++){
+                this.supplies[i].display();
+            }
+            
             this.pushMatrix();
             this.translate(0, 10, 0);
             this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
             this.vehicle.display();
             this.popMatrix();
         }
+        else
+            this.resetVehicle();
 
         this.popMatrix();
 

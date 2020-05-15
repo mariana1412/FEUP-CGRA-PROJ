@@ -6,8 +6,8 @@
 class MyFlag extends CGFobject {
 	constructor(scene) {
         super(scene);
-        this.planeFront = new MyPlane(this.scene, 30);
-        this.planeBack = new MyPlane(this.scene, 30);
+        this.planeFront = new MyPlane(this.scene, 50);
+        this.planeBack = new MyPlane(this.scene, 50);
         this.strip = new My2SideQuad(this.scene);
         this.phase = 0;
         this.previousTime = 0;
@@ -25,7 +25,7 @@ class MyFlag extends CGFobject {
         this.stripTexture = new CGFappearance(this.scene);
         this.stripTexture.setAmbient(0.7,0.7,0.7,1);
         this.stripTexture.setDiffuse(0.9,0.9,0.9,1);
-        this.stripTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.stripTexture.setSpecular(0.2,0.2,0.2,1);
         this.stripTexture.setShininess(10.0);
         this.stripTexture.loadTexture('images/redTexture.png');
         this.stripTexture.setTextureWrap('REPEAT', 'REPEAT');
@@ -48,7 +48,7 @@ class MyFlag extends CGFobject {
         var deltaTime = (time-this.previousTime)/1000;
         this.previousTime = time;
 
-        var deltaX = deltaTime * speed + 2.0;
+        var deltaX = deltaTime * speed + 1.0;
         this.phase += deltaX;
 
         this.shaderFront.setUniformsValues({phase: this.phase});

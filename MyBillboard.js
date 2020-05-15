@@ -22,9 +22,9 @@ class MyBillboard extends CGFobject {
     initTextures() {
 
         this.billboardTexture = new CGFappearance(this.scene);
-        this.billboardTexture.setAmbient(0.7,0.7,0.7,1);
+        this.billboardTexture.setAmbient(0.9, 0.9, 0.9, 1);
         this.billboardTexture.setDiffuse(0.9,0.9,0.9,1);
-        this.billboardTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.billboardTexture.setSpecular(0.2,0.2,0.2,1);
         this.billboardTexture.setShininess(10.0);
         this.billboardTexture.loadTexture('images/billboardBase.png');
         this.billboardTexture.setTextureWrap('REPEAT', 'REPEAT');
@@ -32,7 +32,7 @@ class MyBillboard extends CGFobject {
         this.beamTexture = new CGFappearance(this.scene);
         this.beamTexture.setAmbient(0.7,0.7,0.7,1);
         this.beamTexture.setDiffuse(0.9,0.9,0.9,1);
-        this.beamTexture.setDiffuse(0.2,0.2,0.2,1);
+        this.beamTexture.setSpecular(0.2,0.2,0.2,1);
         this.beamTexture.setShininess(10.0);
         this.beamTexture.loadTexture('images/beam.png');
         this.beamTexture.setTextureWrap('REPEAT', 'REPEAT');
