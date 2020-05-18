@@ -91,6 +91,7 @@ class MyBillboard extends CGFobject {
         this.baseBack.display();
         this.scene.popMatrix();
 
+        //progress bar 
         this.scene.pushMatrix();
         this.scene.setActiveShader(this.shader);
         this.scene.scale(1.5,0.2,1);    
