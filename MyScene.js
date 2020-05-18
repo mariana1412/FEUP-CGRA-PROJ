@@ -19,7 +19,7 @@ class MyScene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
-        this.setUpdatePeriod(50);
+        this.setUpdatePeriod(150);
         
         this.enableTextures(true);
 
@@ -177,8 +177,7 @@ class MyScene extends CGFscene {
         this.nSuppliesDelivered = 0;
         
         for(var i = 0; i < 5; i++){
-            this.supplies[i].state = SupplyStates.INACTIVE;
-            this.supplies[i].y = 10;
+            this.supplies[i].reset();
         }
 
         this.billboard.reset();
@@ -259,7 +258,24 @@ class MyScene extends CGFscene {
             }
             else if(!(this.displayTerrain || this.displayVehicle))
             this.objects[this.currentObject].display();
+      
 
+        if(this.displayVehicle){    
+            
+            for(var i = 0; i < 5; i++){
+                this.supplies[i].display();
+            }
+
+            this.pushMatrix();
+            this.translate(0, 10, 0);
+            this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
+            this.vehicle.display();
+            this.popMatrix();
+
+            this.billboard.display();
+        }
+        else
+            this.resetVehicle();
 
         if(this.displayTerrain){
             this.currentTexture = 0;
@@ -267,24 +283,6 @@ class MyScene extends CGFscene {
             this.displayObjects = true;
             this.terrain.display();
         }
-        
-               
-
-        if(this.displayVehicle){
-            this.billboard.display();
-
-            for(var i = 0; i < 5; i++){
-                this.supplies[i].display();
-            }
-            
-            this.pushMatrix();
-            this.translate(0, 10, 0);
-            this.scale(this.scaleFactor,this.scaleFactor,this.scaleFactor);
-            this.vehicle.display();
-            this.popMatrix();
-        }
-        else
-            this.resetVehicle();
 
         this.popMatrix();
 

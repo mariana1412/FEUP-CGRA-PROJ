@@ -40,9 +40,6 @@ class MyTerrain extends CGFobject {
 
        this.scene.popMatrix();
 
-       // restore default shader (will be needed for drawing the axis in next frame)
-		this.scene.setActiveShader(this.scene.defaultShader);
-
     }
 }
 

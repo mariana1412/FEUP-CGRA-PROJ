@@ -56,7 +56,7 @@ class MyBillboard extends CGFobject {
         this.scene.translate(2,9,17);
         this.scene.rotate(-Math.PI/8.0,0,1,0);
         
-        
+        this.scene.setActiveShader(this.scene.defaultShader);
         //Left Beam
         this.scene.pushMatrix();
         this.beamTexture.apply();
@@ -101,7 +101,6 @@ class MyBillboard extends CGFobject {
         this.scene.popMatrix(); 
         this.scene.popMatrix();
         
-        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.popMatrix();
     }
 }

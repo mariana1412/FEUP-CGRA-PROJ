@@ -58,9 +58,7 @@ class MyFlag extends CGFobject {
     display() {
         this.scene.pushMatrix();
         //falta acertar o suporte da bandeira--acertar os translates
-        
-        this.scene.setActiveShader(this.scene.defaultShader);
- 
+         
         this.scene.pushMatrix();
         this.stripTexture.apply();
         this.scene.translate(-0.02,0.40,1.12);
@@ -69,7 +67,6 @@ class MyFlag extends CGFobject {
         this.strip.display();
         this.scene.popMatrix();
 
-        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.pushMatrix();
         this.stripTexture.apply();
         this.scene.translate(-0.02,-0.40,1.12);
@@ -78,7 +75,6 @@ class MyFlag extends CGFobject {
         this.strip.display();
         this.scene.popMatrix();
       
-
         this.scene.setActiveShader(this.shaderFront);
         this.scene.scale(0.8,0.8,1.3);
         this.flagTexture.bind(1);
@@ -96,7 +92,6 @@ class MyFlag extends CGFobject {
         this.scene.popMatrix();
 
         this.scene.popMatrix();
-        this.scene.setActiveShader(this.scene.defaultShader);
     }
 
 }
