@@ -22,6 +22,14 @@ class MySupply extends CGFobject {
         this.deltaTime = 0; //seconds
     }
     
+    reset(){
+        this.state = SupplyStates.INACTIVE;;
+        this.y = 10;
+        this.x = 0;
+        this.z = 0;
+        this.previousTime = 0;
+        this.deltaTime = 0;
+    }
 
     drop(x, z){
         this.state = SupplyStates.FALLING;
