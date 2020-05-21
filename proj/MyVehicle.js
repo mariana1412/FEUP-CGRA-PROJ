@@ -11,7 +11,6 @@ class MyVehicle extends CGFobject {
         this.vehiclebody = new MyVehicleBody(scene);
         
         this.angY = 0;
-        this.previousAngY = 0;
         this.speed = 0;
         this.x = 0;
         this.y = 0;
@@ -40,7 +39,6 @@ class MyVehicle extends CGFobject {
     }
 
     stopAutoPilot(){    
-        this.angY = this.previousAngY;
         this.automatic = false;
     }
 
