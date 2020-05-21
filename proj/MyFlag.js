@@ -80,14 +80,14 @@ class MyFlag extends CGFobject {
         this.flagTexture.bind(1);
         this.scene.pushMatrix();
 
-        this.scene.rotate(-Math.PI/2.0,0,1,0);
+        this.scene.rotate(Math.PI/2.0,0,1,0);
         this.planeFront.display();
         this.scene.popMatrix();
 
 
         this.scene.setActiveShader(this.shaderBack);
         this.scene.pushMatrix();
-        this.scene.rotate(Math.PI/2.0,0,1,0);
+        this.scene.rotate(-Math.PI/2.0,0,1,0);
         this.planeBack.display();
         this.scene.popMatrix();
 

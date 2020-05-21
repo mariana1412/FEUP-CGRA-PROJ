@@ -97,8 +97,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.5, 0.1  , 500, vec3.fromValues(30, 20, 30), vec3.fromValues(0, 0, 0));
-        //this.camera = new CGFcamera(0.5, 0.5  , 500, vec3.fromValues(25, 25, 25), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.5, 0.1, 500, vec3.fromValues(30, 20, 30), vec3.fromValues(0, 0, 0));
     }
 
     setDefaultAppearance() {
@@ -114,21 +113,31 @@ class MyScene extends CGFscene {
         var text="Keys pressed: ";
         var keysPressed=false;
 
+
+        if(this.gui.isKeyPressed("KeyP")){
+
+            if(!this.vehicle.automatic)
+                this.vehicle.startAutoPilot();
+            
+            else
+                this.vehicle.stopAutoPilot();
+
+
+            text +="P";
+            keysPressed = true;
+        }
+        
+
         //check for key codes
         if(!this.vehicle.automatic){
-            if(this.gui.isKeyPressed("KeyP")){
-                text +="P";
-                this.vehicle.startAutoPilot();
-                keysPressed = true;
-            }
             if(this.gui.isKeyPressed("KeyW")){
                 text +="W";
-                this.vehicle.accelerate(0.2*this.speedFactor);
+                this.vehicle.accelerate(0.5*this.speedFactor);
                 keysPressed = true;
             }
             if(this.gui.isKeyPressed("KeyS")){
                 text +="S";
-                this.vehicle.accelerate(-0.2*this.speedFactor);
+                this.vehicle.accelerate(-0.5*this.speedFactor);
                 keysPressed = true;
             }
             if(this.gui.isKeyPressed("KeyA")){
@@ -188,7 +197,7 @@ class MyScene extends CGFscene {
     update(t){
        if(this.displayVehicle){
             this.checkKeys(t);
-            this.vehicle.update(t);
+            this.vehicle.update(t, this.speedFactor);
     
             for(var i=0; i<5; i++){
                 this.supplies[i].update(t);

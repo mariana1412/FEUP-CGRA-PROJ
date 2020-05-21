@@ -63,10 +63,5 @@ class MyInterface extends CGFinterface {
         }  
           return this.activeKeys[keyCode] || false;
      }
-
-    /*isKeyPressed(keyCode){
-        
-        return this.activeKeys[keyCode] || false;
-    }*/
     
 }   

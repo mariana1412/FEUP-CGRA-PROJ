@@ -11,6 +11,7 @@ class MyVehicle extends CGFobject {
         this.vehiclebody = new MyVehicleBody(scene);
         
         this.angY = 0;
+        this.previousAngY = 0;
         this.speed = 0;
         this.x = 0;
         this.y = 0;
@@ -30,15 +31,20 @@ class MyVehicle extends CGFobject {
     }
 
     startAutoPilot(){
-        
         this.automatic = true;
+        this.previousAngY = this.angY;
         this.pilotAngle = (this.angY - 90) * Math.PI / 180.0;
         var perpendicularAngle = (this.angY + 90) * Math.PI / 180.0;
         this.center_x = this.x + Math.sin(perpendicularAngle)*this.radius;
         this.center_z = this.z + Math.cos(perpendicularAngle)*this.radius;
     }
 
-    update(t){      
+    stopAutoPilot(){    
+        this.angY = this.previousAngY;
+        this.automatic = false;
+    }
+
+    update(t, speedFactor){      
         if(this.previousTime == 0)
             this.previousTime = t;
 
@@ -65,11 +71,18 @@ class MyVehicle extends CGFobject {
             this.vehiclebody.setHelixAng(5.0*t);
         }
         else{
+            if(this.speed >0)
+                this.speed = speedFactor*0.5;
+
             sin = Math.sin(this.angY*Math.PI/180.0);
             cos = Math.cos(this.angY*Math.PI/180.0);
             this.x += this.speed*sin;
             this.z += this.speed*cos; 
-            this.vehiclebody.setHelixAng(this.speed*t);
+            if(this.speed == 0)
+                this.vehiclebody.setHelixAng(0.2*t);
+            else 
+                this.vehiclebody.setHelixAng(this.speed*t);
+            
         }
         //update flag
         this.vehiclebody.updateFlag(this.speed, t);

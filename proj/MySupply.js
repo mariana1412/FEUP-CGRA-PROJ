@@ -15,7 +15,7 @@ class MySupply extends CGFobject {
         this.state = SupplyStates.INACTIVE;
 
         this.x = 0;
-        this.y = 10;
+        this.y = 9;
         this.z = 0;
 
         this.previousTime = 0; //ms
@@ -24,7 +24,7 @@ class MySupply extends CGFobject {
     
     reset(){
         this.state = SupplyStates.INACTIVE;;
-        this.y = 10;
+        this.y = 9;
         this.x = 0;
         this.z = 0;
         this.previousTime = 0;
@@ -52,7 +52,7 @@ class MySupply extends CGFobject {
             this.deltaTime = (t-this.previousTime)/1000;
             this.previousTime = t;
 
-            this.y -= (10/3 * this.deltaTime); //it should take 3 seconds to hit the floor
+            this.y -= (9/3 * this.deltaTime); //it should take 3 seconds to hit the floor
 
             if(this.y <= 0.35){
                 this.land();
