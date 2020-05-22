@@ -274,7 +274,7 @@ class MyScene extends CGFscene {
             
             for(var i = 0; i < 5; i++){
                 this.supplies[i].display();
-            }
+            }   
 
             this.pushMatrix();
             this.translate(0, 10, 0);
@@ -282,17 +282,20 @@ class MyScene extends CGFscene {
             this.vehicle.display();
             this.popMatrix();
 
-            this.billboard.display();
+
         }
         else
-            this.resetVehicle();
+            this.resetVehicle();    
 
         if(this.displayTerrain){
             this.currentTexture = 0;
             this.currentObject = 2;
             this.displayObjects = true;
             this.terrain.display();
+
+            this.billboard.display();
         }
+        
 
         this.popMatrix();
 
