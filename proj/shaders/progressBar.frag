@@ -8,7 +8,7 @@ varying vec4 normal;
 uniform int nSuppliesDelivered;
 
 void main() {
-    float separator = -0.6 + (1.2/5.0)*float(nSuppliesDelivered);
+    float separator = -0.5 + (1.0/5.0)*float(nSuppliesDelivered);
 
     if(coords.x > separator){
         gl_FragColor = vec4(0.5, 0.5, 0.5, 1.0);
